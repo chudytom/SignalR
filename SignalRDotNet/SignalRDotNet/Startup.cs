@@ -14,6 +14,8 @@ namespace SampleSignalR
 {
     public class Startup
     {
+        private const string MyCorsPolicyName = "CorsPolicy";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,6 +28,16 @@ namespace SampleSignalR
         {
             services.AddRazorPages();
             services.AddSignalR();
+
+            services.AddCors(o => o.AddPolicy(MyCorsPolicyName, builder =>
+            {
+                builder
+                .WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .SetIsOriginAllowed((host) => true);
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,12 +54,15 @@ namespace SampleSignalR
                 app.UseHsts();
             }
 
+            app.UseCors(MyCorsPolicyName);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
