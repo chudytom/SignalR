@@ -7,7 +7,7 @@
     <button (click)="sendMessage()">Send message</button>
     <hr />
   </div>
-  <div *ngIf="messagesList.length > 0" class="row">
+  <div *ngIf='messagesList.length > 0' class="row">
     <label>Messages:</label>
     <ul>
       <li *ngFor='let message of messagesList'>{{message}}</li>
