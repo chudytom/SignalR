@@ -1,0 +1,18 @@
+button {
+  font-size: medium;
+  padding: 0.5em;
+}
+
+.container {
+  margin: 1em;
+}
+
+.row {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+input {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
